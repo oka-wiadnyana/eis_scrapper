@@ -68,9 +68,9 @@ let allData = async () => {
 
 // allData();
 // Run the cron job every morning and afternoon
-cron.schedule("45 20 * * *", async () => {
+cron.schedule("00 07 * * *", async () => {
   allData();
 });
-cron.schedule("47 20 * * *", async () => {
+cron.schedule("00 16 * * *", async () => {
   allData();
 });
