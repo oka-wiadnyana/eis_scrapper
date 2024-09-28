@@ -66,11 +66,11 @@ let allData = async () => {
   });
 };
 
-// allData();
+allData();
 // Run the cron job every morning and afternoon
-cron.schedule("00 07 * * *", async () => {
-  allData();
-});
-cron.schedule("00 16 * * *", async () => {
-  allData();
-});
+// cron.schedule("00 07 * * *", async () => {
+//   allData();
+// });
+// cron.schedule("00 16 * * *", async () => {
+//   allData();
+// });
