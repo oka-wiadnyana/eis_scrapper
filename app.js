@@ -61,16 +61,16 @@ let allData = async () => {
       console.log("Data inserted successfully:", result);
 
       // Close the db after the operation
-      db.end();
+      // db.end();
     });
   });
 };
 
-allData();
+// allData();
 // Run the cron job every morning and afternoon
-// cron.schedule("00 07 * * *", async () => {
-//   allData();
-// });
-// cron.schedule("00 16 * * *", async () => {
-//   allData();
-// });
+cron.schedule("45 20 * * *", async () => {
+  allData();
+});
+cron.schedule("47 20 * * *", async () => {
+  allData();
+});
