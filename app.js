@@ -42,28 +42,40 @@ let allData = async () => {
   };
   console.log(allData);
 
-  // Step 1: Truncate the table
-  db.query("TRUNCATE TABLE data_nilai_eis", (err, result) => {
-    if (err) {
-      console.error("Error truncating the table:", err);
-      return;
-    }
-    console.log("Table truncated successfully");
+  const scores = [
+    skorBulananSemuaKelas,
+    skorBulananKelas,
+    skorBulanLaluKelas,
+    skorTahunanKelas,
+    skorTahunanPT,
+  ];
 
-    // Step 2: Insert new data into the table
-    const insertQuery = "INSERT INTO data_nilai_eis SET ?";
-
-    db.query(insertQuery, allData, (err, result) => {
+  if (scores.every((score) => score === null)) {
+    console.log("All values are null.");
+  } else {
+    // Step 1: Truncate the table
+    db.query("TRUNCATE TABLE data_nilai_eis", (err, result) => {
       if (err) {
-        console.error("Error inserting data:", err);
+        console.error("Error truncating the table:", err);
         return;
       }
-      console.log("Data inserted successfully:", result);
+      console.log("Table truncated successfully");
 
-      // Close the db after the operation
-      // db.end();
+      // Step 2: Insert new data into the table
+      const insertQuery = "INSERT INTO data_nilai_eis SET ?";
+
+      db.query(insertQuery, allData, (err, result) => {
+        if (err) {
+          console.error("Error inserting data:", err);
+          return;
+        }
+        console.log("Data inserted successfully:", result);
+
+        // Close the db after the operation
+        // db.end();
+      });
     });
-  });
+  }
 };
 
 // allData();
